@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductItemPatch" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//article" position="inside">
+            <div t-if="env.pos.hasClearanceStock(props.product.id)" 
+                 class="clearance-qty-badge" 
+                 style="position: absolute; bottom: 5px; left: 5px; z-index: 999; font-size: 13px; padding: 4px 10px; background-color: #dc3545; color: #ffffff; border-radius: 8px; font-weight: bold; box-shadow: 0px 2px 4px rgba(0,0,0,0.3); text-align: center;">
+                
+                <div>🔴 Clearance: <t t-esc="env.pos.getClearanceQty(props.product.id)"/></div>
+                
+                <div t-if="env.pos.getClearanceDates(props.product.id)" style="font-size: 10px; font-weight: normal; margin-top: 2px;">
+                    Exp: <t t-esc="env.pos.getClearanceDates(props.product.id)"/>
+                </div>
+                
+            </div>
+        </xpath>
+    </t>
+</templates>

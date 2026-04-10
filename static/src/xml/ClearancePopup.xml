@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!--
+        Popup presented when a rep taps a product that has clearance stock.
+        Two large touch-friendly buttons: Normal Stock and Clearance Stock.
+        The clearance button shows exactly how many clearance units are available.
+    -->
+    <t t-name="ClearancePopup" owl="1">
+        <div class="popup clearance-choice-popup">
+
+            <div class="popup-header text-center mb-2">
+                <h3 class="popup-title fw-bolder">Add to Order</h3>
+                <p class="clearance-product-name text-muted">
+                    <t t-esc="props.productName"/>
+                </p>
+            </div>
+
+            <div class="popup-body">
+                <p class="text-center mb-3" style="font-size:0.95rem;">
+                    This product has clearance stock available.<br/>
+                    Which stock would you like to add?
+                </p>
+
+                <div class="stock-choice-buttons d-flex gap-3 justify-content-center">
+
+                    <!-- Normal stock button -->
+                    <button class="btn stock-btn-normal" t-on-click="chooseNormal">
+                        <div class="stock-btn-icon">📦</div>
+                        <div class="stock-btn-label">Normal Stock</div>
+                        <div class="stock-btn-note">Standard price</div>
+                    </button>
+
+                    <!-- Clearance stock button -->
+                    <button class="btn stock-btn-clearance" t-on-click="chooseClearance">
+                        <div class="stock-btn-icon">🔴</div>
+                        <div class="stock-btn-label">Clearance Stock</div>
+                        <div class="stock-btn-qty">
+                            <t t-esc="props.clearanceQty"/> available
+                        </div>
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="popup-footer d-flex justify-content-center mt-4">
+                <button class="btn btn-secondary px-4" t-on-click="cancel">
+                    Cancel
+                </button>
+            </div>
+
+        </div>
+    </t>
+</templates>
